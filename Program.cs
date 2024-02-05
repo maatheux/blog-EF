@@ -8,14 +8,12 @@ Console.Clear();
 using (var contex = new BlogDataContext())
 {
   
-  IEnumerable<Tag> tags = contex
+  Tag? tag = contex
     .Tags
     .AsNoTracking()
-    .ToList(); // nao ira trazer os metadados do bd, nao esta tendo um tracking. Recomendado quando nao for usar para Delete, Update
+    .FirstOrDefault(x => x.Id == 3);
+    //.Single() => so pega se o item for unico
 
-  foreach (Tag tag in tags)
-  {
-    Console.WriteLine(tag.Name);
-  }
+  Console.WriteLine(tag?.Name);
 
 }
