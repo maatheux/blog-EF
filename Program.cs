@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 
 Console.Clear();
 
-using (var contex = new BlogDataContext())
+using (var context = new BlogDataContext())
 {
   
 }
