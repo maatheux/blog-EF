@@ -7,12 +7,15 @@ Console.Clear();
 
 using var context = new BlogDataContext();
 
-var posts = context.Posts
-  .AsNoTracking()
+var post = context.Posts
   .Include(x => x.Author)
   .Include(x => x.Category)
   .OrderByDescending(x => x.LastUpdateDate)
-  .ToList();
+  .FirstOrDefault();
 
-foreach (var post in posts)
-  Console.WriteLine($"{post.Title} escrito por {post.Author?.Name} em {post.Category?.Name}");
+post.Author.Name = "Teste";
+
+context.Posts.Update(post);
+context.SaveChanges();
+
+Console.WriteLine("Success!");

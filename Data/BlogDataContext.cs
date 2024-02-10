@@ -16,7 +16,7 @@ public class BlogDataContext : DbContext
   protected override void OnConfiguring(DbContextOptionsBuilder options)
   {
     options.UseSqlServer("Server=localhost,1433;Initial Catalog=Blog;User ID=sa;Password=1q2w3e4r@#$;TrustServerCertificate=true;");
-    options.LogTo(Console.WriteLine); // ira logar as queries que estao sendo geradas no banco pelo EF
+    //options.LogTo(Console.WriteLine); // ira logar as queries que estao sendo geradas no banco pelo EF
   }
   
 }
