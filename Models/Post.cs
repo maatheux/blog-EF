@@ -3,21 +3,11 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Blog.Models;
 
-[Table("Post")]
 public class Post
 {
-  [Key]
-  [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-  public int Id { get; set; }
-  
-  [ForeignKey("CategoryId")]
-  public int CategoryId { get; set; }
-  public Category Category { get; set; } // Navigation property - o EF ira saber que eh uma relacao entre tabelas
-  
-  [ForeignKey("AuthorId")]
+  public int Id { get; set; }  
+  public int CategoryId { get; set; }  
   public int AuthorId { get; set; }
-  public User Author { get; set; }
-
   public string Title { get; set; }
   public string Summary { get; set; }
   public string Body { get; set; }
