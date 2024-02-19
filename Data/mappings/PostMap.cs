@@ -32,5 +32,18 @@ public class PostMap : IEntityTypeConfiguration<Post>
         // builder
         // .HasIndex(x => x.Slug, "IX_User_Slug")
         // .IsUnique();
+
+        // RELACIONAMENTOS
+        builder.HasOne(x => x.Author)
+          .WithMany(x => x.Posts)
+          .HasConstraintName("FK_Post_Author")
+          .OnDelete(DeleteBehavior.Cascade); // relacionamento 1-N
+
+        builder.HasOne(x => x.Author)
+          .WithMany(x => x.Posts)
+          .HasConstraintName("FK_Post_Category")
+          .OnDelete(DeleteBehavior.Cascade);
+
+        // se fosse relacinamento 1-1 -> builder.OwnsOne()
     }
 }
