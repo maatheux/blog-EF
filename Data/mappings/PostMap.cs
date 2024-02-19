@@ -23,15 +23,9 @@ public class PostMap : IEntityTypeConfiguration<Post>
           //.HasDefaultValueSql("GETDATE()"); /* gerado no sql */
           .HasDefaultValue(DateTime.Now.ToUniversalTime()); // gerado no .NET
         
-
-        // builder.Property(x => x.Bio);
-        // builder.Property(x => x.Email);
-        // builder.Property(x => x.Image);
-        // builder.Property(x => x.PasswordHash);
         
-        // builder
-        // .HasIndex(x => x.Slug, "IX_User_Slug")
-        // .IsUnique();
+        builder.HasIndex(x => x.Slug, "IX_Post_Slug")
+          .IsUnique();
 
         // RELACIONAMENTOS
         builder.HasOne(x => x.Author)
