@@ -19,7 +19,7 @@ public class UserMap : IEntityTypeConfiguration<User>
         builder.Property(x => x.Name)
           .IsRequired()
           .HasColumnName("Name")
-          .HasColumnType("VARCHAR")
+          .HasColumnType("NVARCHAR")
           .HasMaxLength(80);
         
         builder.Property(x => x.Slug)
