@@ -25,3 +25,5 @@ context.SaveChanges();
 // dotnet ef migrations add/remove <nome-migration>  --> criando migration
 
 // dotnet ef database update  --> executando migration no bd
+
+// dotnet ef migrations script -o ./script.sql  --> gerar o script de criacao pra rodar direto no sql
