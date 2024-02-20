@@ -6,15 +6,15 @@ using Microsoft.EntityFrameworkCore;
 Console.Clear();
 
 using var context = new BlogDataContext();
-var postList = GetPosts(context, 0, 25);
+var posts = context.Posts
+  .Include(x => x.Author)
+    .ThenInclude(x => x.Roles) /* vai executar um subselect */
+  .Include(x => x.Category);
 
-
-static IList<Post> GetPosts(BlogDataContext context, int skip = 0, int take = 25)
+foreach (var post in posts)
 {
-  var posts = context.Posts
-    .AsNoTracking()
-    .Skip(skip)
-    .Take(take)
-    .ToList();
-  return posts;
+  foreach (var role in post.Author.Roles)
+  {
+    
+  }
 }
