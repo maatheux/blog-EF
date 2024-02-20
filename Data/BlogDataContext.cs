@@ -9,6 +9,7 @@ public class BlogDataContext : DbContext
   public DbSet<Category> Categories { get; set; }
   public DbSet<Post> Posts { get; set; }
   public DbSet<User> Users { get; set; }
+  public DbSet<Tag> Tags { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder options) 
       => options.UseSqlServer("Server=localhost,1433;Initial Catalog=BlogFluentMap;User ID=sa;Password=1q2w3e4r@#$;TrustServerCertificate=true;");

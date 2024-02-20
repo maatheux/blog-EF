@@ -5,25 +5,22 @@ using Microsoft.EntityFrameworkCore;
 
 Console.Clear();
 
-User user = new User
+
+
+static async Task Execute()
 {
-  Bio = "Teste",
-  Email = "matheus@mail.com",
-  GitHub = "maatheux",
-  Image = "https://balta.io",
-  Name = "Matheus",
-  PasswordHash = "1234",
-  Slug = "matheus-lima"
-};
+  using var context = new BlogDataContext();
+  
+  //var posts = await context.Posts.AsNoTracking().ToListAsync();
+  
+  var post = await context.Posts.FirstOrDefaultAsync();
+  var tags = await context.Tags.FirstOrDefaultAsync();
 
-using var context = new BlogDataContext();
-context.Users.Add(user);
-context.SaveChanges();
+  var posts = await GetPosts(context);
 
-// dotnet tool install --global dotnet-ef  --> instalacao ferramenta para criar as migrations
+} // o task permite executarmos a funcao de forma assincrona
 
-// dotnet ef migrations add/remove <nome-migration>  --> criando migration
-
-// dotnet ef database update  --> executando migration no bd
-
-// dotnet ef migrations script -o ./script.sql  --> gerar o script de criacao pra rodar direto no sql
+static async Task<IList<Post>> GetPosts(BlogDataContext context)
+{
+  return await context.Posts.ToListAsync();
+}
